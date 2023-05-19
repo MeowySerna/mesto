@@ -20,4 +20,4 @@
 
 ## GitHub Pages
 
-- [Mesto](https://meowyserna.github.io/russian-travel)
+- [Mesto](https://meowyserna.github.io/mesto/)
