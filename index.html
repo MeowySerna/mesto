@@ -16,16 +16,16 @@
       <main class="main">
         <section class="profile">
           <img
-            src="images/tai-bui--Y-3eWVK2iY-unsplash(1).jpg"
-            alt="юзерпик"
+            src="images/avatar.png"
+            alt="Аватар профиля"
             class="profile__avatar"
           />
           <div class="profile__info">
-            <h1 class="profile__name">Котик Котикович</h1>
-            <button class="profile__edit-button"></button>
-            <p class="profile__description">Котик</p>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__edit-button"></button>
+            <p class="profile__description">Исследователь океана</p>
           </div>
-          <button class="profile__add-button"></button>
+          <button type="button" class="profile__add-button"></button>
         </section>
         <section class="cards">
           <div class="card">
@@ -36,7 +36,7 @@
             />
             <div class="card__info">
               <h2 class="card__title">Королёв</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
           <div class="card">
@@ -47,7 +47,7 @@
             />
             <div class="card__info">
               <h2 class="card__title">Сочи</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
           <div class="card">
@@ -58,7 +58,7 @@
             />
             <div class="card__info">
               <h2 class="card__title">Болотная набережная</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
           <div class="card">
@@ -69,7 +69,7 @@
             />
             <div class="card__info">
               <h2 class="card__title">Большая Садовая</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
           <div class="card">
@@ -80,7 +80,7 @@
             />
             <div class="card__info">
               <h2 class="card__title">Углич</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
           <div class="card">
@@ -91,7 +91,7 @@
             />
             <div class="card__info">
               <h2 class="card__title">Савеловская</h2>
-              <button class="card__like"></button>
+              <button type="button" class="card__like"></button>
             </div>
           </div>
         </section>
@@ -99,6 +99,21 @@
       <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
       </footer>
+      <div class="popup">
+        <div class="popup__container">
+          <button type="button" class="popup__close-button"></button>
+          <form action="" class="popup__form">
+            <h2 class="popup__heading">Редактировать профиль</h2>
+            <div class="popup__inputs">
+              <input type="text" id="input_name" class="popup__input" />
+              <input type="text" id="input_description" class="popup__input" />
+            </div>
+            <button type="submit" class="popup__submit-button">
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </body>
 </html>
