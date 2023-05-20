@@ -11,7 +11,6 @@
     <div class="root">
       <header class="header">
         <img src="images/logo.svg" alt="логотип mesto" class="header__logo" />
-        <div class="header__line"></div>
       </header>
       <main class="main">
         <section class="profile">
@@ -28,72 +27,74 @@
           <button type="button" class="profile__add-button"></button>
         </section>
         <section class="cards">
-          <div class="card">
-            <img
-              src="images/andrei-shirokov-B_zpD-A6S5U-unsplash.jpg"
-              alt="Королёв"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Королёв</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="images/igor-starkov-AGKFA_53U8I-unsplash.jpg"
-              alt="Сочи"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Сочи</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="images/egor-myznik-ZXjfdqIQGkg-unsplash.jpg"
-              alt="Болотная набережная"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Болотная набережная</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="images/max-titov-0Oa4Z4mhDmo-unsplash(1).jpg"
-              alt="Большая Садовая"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Большая Садовая</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="images/egor-myznik-t4rEARlf94A-unsplash(1).jpg"
-              alt="Углич"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Углич</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
-          <div class="card">
-            <img
-              src="images/refargotohp-mPpaLeGx1Do-unsplash(1).jpg"
-              alt="Савеловская"
-              class="card__image"
-            />
-            <div class="card__info">
-              <h2 class="card__title">Савеловская</h2>
-              <button type="button" class="card__like"></button>
-            </div>
-          </div>
+          <ul class="card__list">
+            <li class="card">
+              <img
+                src="images/andrei-shirokov-B_zpD-A6S5U-unsplash.jpg"
+                alt="Королёв"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title">Королёв</h2>
+                <button type="button" class="card__like"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="images/igor-starkov-AGKFA_53U8I-unsplash.jpg"
+                alt="Сочи"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title">Сочи</h2>
+                <button type="button" class="card__like"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="images/egor-myznik-ZXjfdqIQGkg-unsplash.jpg"
+                alt="Болотная набережная"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title">Болотная набережная</h2>
+                <button type="button" class="card__like"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="images/max-titov-0Oa4Z4mhDmo-unsplash(1).jpg"
+                alt="Большая Садовая"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title">Большая Садовая</h2>
+                <button type="button" class="card__like"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="images/egor-myznik-t4rEARlf94A-unsplash(1).jpg"
+                alt="Углич"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title">Углич</h2>
+                <button type="button" class="card__like"></button>
+              </div>
+            </li>
+            <li class="card">
+              <img
+                src="images/refargotohp-mPpaLeGx1Do-unsplash(1).jpg"
+                alt="Савеловская"
+                class="card__image"
+              />
+              <div class="card__info">
+                <h2 class="card__title">Савеловская</h2>
+                <button type="button" class="card__like"></button>
+              </div>
+            </li>
+          </ul>
         </section>
       </main>
       <footer class="footer">
@@ -102,7 +103,7 @@
       <div class="popup">
         <div class="popup__container">
           <button type="button" class="popup__close-button"></button>
-          <form action="" class="popup__form">
+          <form class="popup__form" name="popup__form">
             <h2 class="popup__heading">Редактировать профиль</h2>
             <div class="popup__inputs">
               <input type="text" id="input_name" class="popup__input" />
@@ -115,6 +116,6 @@
         </div>
       </div>
     </div>
-    <script src="index.js"></script>
+    <script src="scripts/index.js"></script>
   </body>
 </html>

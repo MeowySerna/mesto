@@ -2,6 +2,6 @@
   aspect-ratio: 1 / 1;
   width: 100%;
   object-fit: cover;
-  border-top-left-radius:10px;
-  border-top-right-radius:10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
