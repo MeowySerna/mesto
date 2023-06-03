@@ -26,23 +26,26 @@ let cardContainer = document.querySelector(".cards__list");
 let popupImage = document.querySelector(".popup__image");
 let popupCaption = document.querySelector(".popup__image-caption");
 
-
 const openEditPopup = () => {
-  editPopup.classList.add("popup_opened");
+  editPopup.classList.add("visible");
+  editPopup.classList.remove("hidden");
   nameInput.value = nameDisplay.textContent;
   jobInput.value = jobDisplay.textContent;
 };
 
 const openAddPopup = () => {
-  addPopup.classList.add("popup_opened");
+  addPopup.classList.add("visible");
+  addPopup.classList.remove("hidden");
 };
 
 const closeEditPopup = () => {
-  editPopup.classList.remove("popup_opened");
+  editPopup.classList.remove("visible");
+  editPopup.classList.add("hidden");
 };
 
 const closeAddPopup = () => {
-  addPopup.classList.remove("popup_opened");
+  addPopup.classList.remove("visible");
+  addPopup.classList.add("hidden");
 };
 
 const createCard = (cardData) => {
@@ -73,13 +76,16 @@ const createCard = (cardData) => {
     popupImage.src = cardPhoto.src;
     popupImage.alt = cardPhoto.alt;
     popupCaption.textContent = cardName.textContent;
-    ImagePopup.classList.add("popup_opened");
+
+    ImagePopup.classList.add("visible");
+    ImagePopup.classList.remove("hidden");
   };
 
   cardPhoto.addEventListener("click", cardOpen);
 
   const cardClose = () => {
-    ImagePopup.classList.remove("popup_opened");
+    ImagePopup.classList.add("hidden");
+    ImagePopup.classList.remove("visible");
   };
   closeImageButton.addEventListener("click", cardClose);
   return card;
@@ -118,4 +124,3 @@ closeEditButton.addEventListener("click", closeEditPopup);
 closeAddButton.addEventListener("click", closeAddPopup);
 formEditElement.addEventListener("submit", handleFormEditSubmit);
 formAddElement.addEventListener("submit", handleFormAddSubmit);
-
