@@ -1,52 +1,46 @@
 import { initialCards } from "./constants.js";
 //popups
-let editPopup = document.querySelector(".popup");
-let addPopup = document.querySelector(".popup_type_add");
-let ImagePopup = document.querySelector(".popup_type_image");
+const editPopup = document.querySelector(".popup_type_edit");
+const addPopup = document.querySelector(".popup_type_add");
+const imagePopup = document.querySelector(".popup_type_image");
 //forms
-let formEditElement = document.querySelector(".popup__form");
-let formAddElement = document.querySelector(".popup__form_type_add");
+const formEditElement = document.querySelector(".popup__form");
+const formAddElement = document.querySelector(".popup__form_type_add");
 //inputs
-let nameInput = document.querySelector("#input_name");
-let jobInput = document.querySelector("#input_description");
-let imageNameInput = document.querySelector("#input_image-name");
-let imageLinkInput = document.querySelector("#input_image-link");
+const nameInput = document.querySelector("#input_name");
+const jobInput = document.querySelector("#input_description");
+const imageNameInput = document.querySelector("#input_image-name");
+const imageLinkInput = document.querySelector("#input_image-link");
 //close buttons
-let closeEditButton = document.querySelector(".popup__close-button");
-let closeAddButton = addPopup.querySelector(" .popup__close-button");
-let closeImageButton = ImagePopup.querySelector(".popup__close-button");
+const closeEditButton = document.querySelector(".popup__close-button");
+const closeAddButton = addPopup.querySelector(" .popup__close-button");
+const closeImageButton = imagePopup.querySelector(".popup__close-button");
 //action buttons
-let addButton = document.querySelector(".profile__add-button");
-let editButton = document.querySelector(".profile__edit-button");
+const addButton = document.querySelector(".profile__add-button");
+const editButton = document.querySelector(".profile__edit-button");
 //content
-let nameDisplay = document.querySelector(".profile__name");
-let jobDisplay = document.querySelector(".profile__description");
-let cardTemplate = document.querySelector("#card");
-let cardContainer = document.querySelector(".cards__list");
-let popupImage = document.querySelector(".popup__image");
-let popupCaption = document.querySelector(".popup__image-caption");
+const nameDisplay = document.querySelector(".profile__name");
+const jobDisplay = document.querySelector(".profile__description");
+const cardTemplate = document.querySelector("#card");
+const cardContainer = document.querySelector(".cards__list");
+const popupImage = document.querySelector(".popup__image");
+const popupCaption = document.querySelector(".popup__image-caption");
 
-const openEditPopup = () => {
-  editPopup.classList.add("visible");
-  editPopup.classList.remove("hidden");
-  nameInput.value = nameDisplay.textContent;
-  jobInput.value = jobDisplay.textContent;
+const openPopup = (popup, name = "", job = "") => {
+  popup.classList.add("visible");
+  popup.classList.remove("hidden");
+
+  if (name) {
+    nameInput.value = name;
+    jobInput.value = job;
+  }
 };
 
-const openAddPopup = () => {
-  addPopup.classList.add("visible");
-  addPopup.classList.remove("hidden");
+const closePopup = (popup) => {
+  popup.classList.remove("visible");
+  popup.classList.add("hidden");
 };
 
-const closeEditPopup = () => {
-  editPopup.classList.remove("visible");
-  editPopup.classList.add("hidden");
-};
-
-const closeAddPopup = () => {
-  addPopup.classList.remove("visible");
-  addPopup.classList.add("hidden");
-};
 
 const createCard = (cardData) => {
   const card = cardTemplate.content.querySelector(".card").cloneNode(true);
@@ -72,22 +66,16 @@ const createCard = (cardData) => {
   cardLikeButton.addEventListener("click", likeCard);
   cardTrashButton.addEventListener("click", handleDelete);
 
-  const cardOpen = () => {
+  const openCard = () => {
     popupImage.src = cardPhoto.src;
     popupImage.alt = cardPhoto.alt;
     popupCaption.textContent = cardName.textContent;
-
-    ImagePopup.classList.add("visible");
-    ImagePopup.classList.remove("hidden");
+    openPopup(imagePopup);
   };
 
-  cardPhoto.addEventListener("click", cardOpen);
+  cardPhoto.addEventListener("click", openCard);
 
-  const cardClose = () => {
-    ImagePopup.classList.add("hidden");
-    ImagePopup.classList.remove("visible");
-  };
-  closeImageButton.addEventListener("click", cardClose);
+
   return card;
 };
 
@@ -110,6 +98,7 @@ const handleFormAddSubmit = (evt) => {
   };
   const newCard = createCard(newCardData);
   renderCard(newCard);
+  formAddElement.reset();
   closeAddPopup();
 };
 
@@ -118,6 +107,26 @@ initialCards.forEach((card) => {
   renderCard(newCard);
 });
 
+const openEditPopup = () => {
+  openPopup(editPopup, nameDisplay.textContent, jobDisplay.textContent);
+};
+
+const openAddPopup = () => {
+  openPopup(addPopup);
+};
+
+const closeEditPopup = () => {
+  closePopup(editPopup);
+};
+
+const closeAddPopup = () => {
+  closePopup(addPopup);
+};
+const closeImagePopup = () => {
+  closePopup(imagePopup);
+};
+
+closeImageButton.addEventListener("click", closeImagePopup);
 editButton.addEventListener("click", openEditPopup);
 addButton.addEventListener("click", openAddPopup);
 closeEditButton.addEventListener("click", closeEditPopup);
