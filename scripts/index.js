@@ -16,27 +16,24 @@ const closeEditButton = editPopup.querySelector(".popup__close-button");
 const closeAddButton = addPopup.querySelector(" .popup__close-button");
 const closeImageButton = imagePopup.querySelector(".popup__close-button");
 //action buttons
-const addButton = formAddElement.querySelector(".profile__add-button");
-const editButton = formEditElement.querySelector(".profile__edit-button");
+const addButton = document.querySelector(".profile__add-button");
+const editButton = document.querySelector(".profile__edit-button");
 //content
 const nameDisplay = document.querySelector(".profile__name");
 const jobDisplay = document.querySelector(".profile__description");
 const cardTemplate = document.querySelector("#card");
 const cardContainer = document.querySelector(".cards__list");
-const popupImage = imagePopup.querySelector(".popup__image");
-const popupCaption = imagePopup.querySelector(".popup__image-caption");
+const popupImage = document.querySelector(".popup__image");
+const popupCaption = document.querySelector(".popup__image-caption");
 
-const openPopup = (popup, name = "", job = "") => {
+const openPopup = (popup) => {
   popup.classList.add("popup_opened");
 
-  if (name) {
-    nameInput.value = name;
-    jobInput.value = job;
-  }
 };
 
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
+
 };
 
 
@@ -106,7 +103,9 @@ initialCards.forEach((card) => {
 });
 
 const openEditPopup = () => {
-  openPopup(editPopup, nameDisplay.textContent, jobDisplay.textContent);
+  nameInput.value=nameDisplay.textContent;
+  jobInput.value=jobDisplay.textContent;
+  openPopup(editPopup);
 };
 
 const openAddPopup = () => {
