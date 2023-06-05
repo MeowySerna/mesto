@@ -4,31 +4,30 @@ const editPopup = document.querySelector(".popup_type_edit");
 const addPopup = document.querySelector(".popup_type_add");
 const imagePopup = document.querySelector(".popup_type_image");
 //forms
-const formEditElement = document.querySelector(".popup__form");
-const formAddElement = document.querySelector(".popup__form_type_add");
+const formEditElement = editPopup.querySelector(".popup__form");
+const formAddElement = addPopup.querySelector(".popup__form");
 //inputs
-const nameInput = document.querySelector("#input_name");
-const jobInput = document.querySelector("#input_description");
-const imageNameInput = document.querySelector("#input_image-name");
-const imageLinkInput = document.querySelector("#input_image-link");
+const nameInput = formEditElement.querySelector("#input_name");
+const jobInput = formEditElement.querySelector("#input_description");
+const imageNameInput = formAddElement.querySelector("#input_image-name");
+const imageLinkInput = formAddElement.querySelector("#input_image-link");
 //close buttons
-const closeEditButton = document.querySelector(".popup__close-button");
+const closeEditButton = editPopup.querySelector(".popup__close-button");
 const closeAddButton = addPopup.querySelector(" .popup__close-button");
 const closeImageButton = imagePopup.querySelector(".popup__close-button");
 //action buttons
-const addButton = document.querySelector(".profile__add-button");
-const editButton = document.querySelector(".profile__edit-button");
+const addButton = formAddElement.querySelector(".profile__add-button");
+const editButton = formEditElement.querySelector(".profile__edit-button");
 //content
 const nameDisplay = document.querySelector(".profile__name");
 const jobDisplay = document.querySelector(".profile__description");
 const cardTemplate = document.querySelector("#card");
 const cardContainer = document.querySelector(".cards__list");
-const popupImage = document.querySelector(".popup__image");
-const popupCaption = document.querySelector(".popup__image-caption");
+const popupImage = imagePopup.querySelector(".popup__image");
+const popupCaption = imagePopup.querySelector(".popup__image-caption");
 
 const openPopup = (popup, name = "", job = "") => {
-  popup.classList.add("visible");
-  popup.classList.remove("hidden");
+  popup.classList.add("popup_opened");
 
   if (name) {
     nameInput.value = name;
@@ -37,8 +36,7 @@ const openPopup = (popup, name = "", job = "") => {
 };
 
 const closePopup = (popup) => {
-  popup.classList.remove("visible");
-  popup.classList.add("hidden");
+  popup.classList.remove("popup_opened");
 };
 
 
