@@ -28,14 +28,26 @@ const popupCaption = document.querySelector(".popup__image-caption");
 
 const openPopup = (popup) => {
   popup.classList.add("popup_opened");
-
+  document.addEventListener("keydown", popupEsc);
+  document.addEventListener('click', popupOverlayClick);
 };
 
 const closePopup = (popup) => {
   popup.classList.remove("popup_opened");
-
+  document.removeEventListener("keydown", popupEsc);
+  document.removeEventListener('click', popupOverlayClick);
 };
-
+const popupEsc = (evt) => {
+  const openedPopup = document.querySelector(".popup_opened");
+  if (evt.key === "Escape") {
+    closePopup(openedPopup);
+  }
+};
+const popupOverlayClick= (evt)=> {
+  if(evt.target.classList.contains('popup')){
+    closePopup(evt.target);
+  }
+};
 
 const createCard = (cardData) => {
   const card = cardTemplate.content.querySelector(".card").cloneNode(true);
