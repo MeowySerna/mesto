@@ -1,4 +1,4 @@
-import { VALIDATION_CONFIG, initialCards } from "./constants.js";
+import { initialCards } from "./constants.js";
 
 // Popups
 const editPopup = document.querySelector(".popup_type_edit");
@@ -94,8 +94,8 @@ const createCard = (cardData) => {
   return card;
 };
 
-const renderCard = (card, container) => {
-  container.prepend(card);
+const renderCard = (card) => {
+  cardContainer.prepend(card);
 };
 
 // Form submit handlers
@@ -113,10 +113,10 @@ const handleFormAddSubmit = (evt) => {
     link: imageLinkInput.value,
   };
   const newCard = createCard(newCardData);
-  renderCard(newCard, cardContainer);
-  const buttonElement = formAddElement.querySelector(VALIDATION_CONFIG.submitButtonSelector)
+  renderCard(newCard);
+  const buttonElement = formAddElement.querySelector('.popup__submit-button')
   buttonElement.setAttribute("disabled", "");
-  buttonElement.classList.add(VALIDATION_CONFIG.inactiveButtonClass);
+  buttonElement.classList.add('popup__submit-button_disabled');
   formAddElement.reset();
   closeAddPopup();
 };
