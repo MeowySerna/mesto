@@ -32,15 +32,12 @@ const hideInputError = (formElement, inputElement, config) => {
   errorElement.textContent = "";
 };
 
-const checkInputValidity = (formElement, inputElement, config) => {
+const checkInputValidity = (formElement, inputElement,inputList,buttonElement, config) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, config);
   } else {
     hideInputError(formElement, inputElement, config);
   }
-
-  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-  const buttonElement = formElement.querySelector(config.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, config);
 };
 
@@ -51,7 +48,7 @@ const setEventListeners = (formElement, config) => {
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
-      checkInputValidity(formElement, inputElement, config);
+      checkInputValidity(formElement, inputElement,inputList,buttonElement, config);
     });
   });
 };
