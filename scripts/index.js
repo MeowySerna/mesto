@@ -1,4 +1,5 @@
-import { initialCards } from "./constants.js";
+import { initialCards,VALIDATION_CONFIG } from "./constants.js";
+import { disableButton } from "./validate.js";
 
 // Popups
 const editPopup = document.querySelector(".popup_type_edit");
@@ -115,8 +116,7 @@ const handleFormAddSubmit = (evt) => {
   const newCard = createCard(newCardData);
   renderCard(newCard);
   const buttonElement = formAddElement.querySelector('.popup__submit-button')
-  buttonElement.setAttribute("disabled", "");
-  buttonElement.classList.add('popup__submit-button_disabled');
+  disableButton(buttonElement,VALIDATION_CONFIG);
   formAddElement.reset();
   closeAddPopup();
 };

@@ -6,7 +6,15 @@ const showInputError = (formElement, inputElement, config) => {
   errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.remove(config.errorClass);
 };
+export const disableButton = (buttonElement,config) => {
+  buttonElement.setAttribute("disabled", "");
+    buttonElement.classList.add(config.inactiveButtonClass);
+};
 
+const enableButton = (buttonElement,config) => {
+  buttonElement.removeAttribute("disabled");
+  buttonElement.classList.remove(config.inactiveButtonClass);
+};
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     return !inputElement.validity.valid;
@@ -17,11 +25,9 @@ const toggleButtonState = (inputList, buttonElement, config) => {
   const isFormValid = !hasInvalidInput(inputList);
 
   if (isFormValid) {
-    buttonElement.removeAttribute("disabled");
-    buttonElement.classList.remove(config.inactiveButtonClass);
+    enableButton(buttonElement,config);
   } else {
-    buttonElement.setAttribute("disabled", "");
-    buttonElement.classList.add(config.inactiveButtonClass);
+    disableButton(buttonElement,config);
   }
 };
 
@@ -32,7 +38,13 @@ const hideInputError = (formElement, inputElement, config) => {
   errorElement.textContent = "";
 };
 
-const checkInputValidity = (formElement, inputElement,inputList,buttonElement, config) => {
+const checkInputValidity = (
+  formElement,
+  inputElement,
+  inputList,
+  buttonElement,
+  config
+) => {
   if (!inputElement.validity.valid) {
     showInputError(formElement, inputElement, config);
   } else {
@@ -42,13 +54,21 @@ const checkInputValidity = (formElement, inputElement,inputList,buttonElement, c
 };
 
 const setEventListeners = (formElement, config) => {
-  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
+  const inputList = Array.from(
+    formElement.querySelectorAll(config.inputSelector)
+  );
   const buttonElement = formElement.querySelector(config.submitButtonSelector);
   toggleButtonState(inputList, buttonElement, config);
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
-      checkInputValidity(formElement, inputElement,inputList,buttonElement, config);
+      checkInputValidity(
+        formElement,
+        inputElement,
+        inputList,
+        buttonElement,
+        config
+      );
     });
   });
 };
