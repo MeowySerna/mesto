@@ -32,6 +32,7 @@ const cardTemplate = document.querySelector("#card");
 const cardContainer = document.querySelector(".cards__list");
 const popupImage = document.querySelector(".popup__image");
 const popupCaption = document.querySelector(".popup__image-caption");
+const addButtonElement = formAddElement.querySelector('.popup__submit-button');
 
 // Event listeners
 const popupEsc = (evt) => {
@@ -115,8 +116,8 @@ const handleFormAddSubmit = (evt) => {
   };
   const newCard = createCard(newCardData);
   renderCard(newCard);
-  const buttonElement = formAddElement.querySelector('.popup__submit-button')
-  disableButton(buttonElement,VALIDATION_CONFIG);
+
+  disableButton(addButtonElement,VALIDATION_CONFIG);
   formAddElement.reset();
   closeAddPopup();
 };
