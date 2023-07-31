@@ -1,4 +1,4 @@
-import { VALIDATION_CONFIG, initialCards } from "./сonstants.js";
+import { VALIDATION_CONFIG, initialCards } from "./constants.js";
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 
