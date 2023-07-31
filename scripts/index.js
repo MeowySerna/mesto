@@ -1,5 +1,6 @@
-import { initialCards,VALIDATION_CONFIG } from "./constants.js";
-import { disableButton } from "./validate.js";
+import { VALIDATION_CONFIG, initialCards } from "./Constants.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 // Popups
 const editPopup = document.querySelector(".popup_type_edit");
@@ -28,11 +29,10 @@ const editButton = document.querySelector(".profile__edit-button");
 // Content
 const nameDisplay = document.querySelector(".profile__name");
 const jobDisplay = document.querySelector(".profile__description");
-const cardTemplate = document.querySelector("#card");
 const cardContainer = document.querySelector(".cards__list");
 const popupImage = document.querySelector(".popup__image");
 const popupCaption = document.querySelector(".popup__image-caption");
-const addButtonElement = formAddElement.querySelector('.popup__submit-button');
+const addButtonElement = formAddElement.querySelector(".popup__submit-button");
 
 // Event listeners
 const popupEsc = (evt) => {
@@ -43,7 +43,7 @@ const popupEsc = (evt) => {
 };
 
 const popupOverlayClick = (evt) => {
-  if (evt.target.classList.contains('popup')) {
+  if (evt.target.classList.contains("popup")) {
     closePopup(evt.target);
   }
 };
@@ -61,28 +61,14 @@ const closePopup = (popup) => {
 
 // Card functions
 const createCard = (cardData) => {
-  const card = cardTemplate.content.querySelector(".card").cloneNode(true);
+  const cardElement = new Card(cardData, "#card").generateCard();
 
-  const cardName = card.querySelector(".card__title");
-  const cardPhoto = card.querySelector(".card__image");
+  const cardName = cardElement.querySelector(".card__title");
+  const cardPhoto = cardElement.querySelector(".card__image");
 
   cardName.textContent = cardData.name;
   cardPhoto.src = cardData.link;
   cardPhoto.alt = cardData.name;
-
-  const cardLikeButton = card.querySelector(".card__like");
-  const cardTrashButton = card.querySelector(".card__trash-button");
-
-  const likeCard = () => {
-    cardLikeButton.classList.toggle("card__like_active");
-  };
-
-  const handleDelete = () => {
-    card.remove();
-  };
-
-  cardLikeButton.addEventListener("click", likeCard);
-  cardTrashButton.addEventListener("click", handleDelete);
 
   const openCard = () => {
     popupImage.src = cardPhoto.src;
@@ -93,7 +79,7 @@ const createCard = (cardData) => {
 
   cardPhoto.addEventListener("click", openCard);
 
-  return card;
+  return cardElement;
 };
 
 const renderCard = (card) => {
@@ -108,6 +94,8 @@ const handleFormEditSubmit = (evt) => {
   closeEditPopup();
 };
 
+const formValidator = new FormValidator(VALIDATION_CONFIG, formAddElement);
+
 const handleFormAddSubmit = (evt) => {
   evt.preventDefault();
   const newCardData = {
@@ -116,13 +104,13 @@ const handleFormAddSubmit = (evt) => {
   };
   const newCard = createCard(newCardData);
   renderCard(newCard);
-
-  disableButton(addButtonElement,VALIDATION_CONFIG);
   formAddElement.reset();
+  formValidator.disableButton();
   closeAddPopup();
 };
 
 // Initial card rendering
+
 initialCards.forEach((card) => {
   const newCard = createCard(card);
   renderCard(newCard);
@@ -162,8 +150,14 @@ formEditElement.addEventListener("submit", handleFormEditSubmit);
 formAddElement.addEventListener("submit", handleFormAddSubmit);
 
 // Set click listeners for popups overlay
-const popups = Array.from(document.querySelectorAll('.popup'));
+const popups = Array.from(document.querySelectorAll(".popup"));
 
 popups.forEach((popup) => {
-  popup.addEventListener('click', popupOverlayClick);
+  popup.addEventListener("click", popupOverlayClick);
+});
+
+const formElements = document.querySelectorAll(".popup__form");
+formElements.forEach((formElement) => {
+  const formValidator = new FormValidator(VALIDATION_CONFIG, formElement);
+  formValidator.enableValidation();
 });
