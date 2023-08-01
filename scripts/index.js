@@ -32,7 +32,6 @@ const jobDisplay = document.querySelector(".profile__description");
 const cardContainer = document.querySelector(".cards__list");
 const popupImage = document.querySelector(".popup__image");
 const popupCaption = document.querySelector(".popup__image-caption");
-const addButtonElement = formAddElement.querySelector(".popup__submit-button");
 
 // Event listeners
 const popupEsc = (evt) => {
@@ -61,25 +60,14 @@ const closePopup = (popup) => {
 
 // Card functions
 const createCard = (cardData) => {
-  const cardElement = new Card(cardData, "#card").generateCard();
-
-  const cardName = cardElement.querySelector(".card__title");
-  const cardPhoto = cardElement.querySelector(".card__image");
-
-  cardName.textContent = cardData.name;
-  cardPhoto.src = cardData.link;
-  cardPhoto.alt = cardData.name;
-
-  const openCard = () => {
-    popupImage.src = cardPhoto.src;
-    popupImage.alt = cardPhoto.alt;
-    popupCaption.textContent = cardName.textContent;
-    openPopup(imagePopup);
-  };
-
-  cardPhoto.addEventListener("click", openCard);
-
+  const cardElement = new Card(cardData, "#card", openCard).generateCard();
   return cardElement;
+};
+const openCard = (name, link) => {
+  popupImage.src = link;
+  popupImage.alt = name;
+  popupCaption.textContent = name;
+  openPopup(imagePopup);
 };
 
 const renderCard = (card) => {
@@ -94,7 +82,8 @@ const handleFormEditSubmit = (evt) => {
   closeEditPopup();
 };
 
-const formValidator = new FormValidator(VALIDATION_CONFIG, formAddElement);
+const formAddValidator = new FormValidator(VALIDATION_CONFIG, formAddElement);
+const formEditValidator = new FormValidator(VALIDATION_CONFIG, formEditElement);
 
 const handleFormAddSubmit = (evt) => {
   evt.preventDefault();
@@ -105,8 +94,8 @@ const handleFormAddSubmit = (evt) => {
   const newCard = createCard(newCardData);
   renderCard(newCard);
   formAddElement.reset();
-  formValidator.disableButton();
   closeAddPopup();
+  formAddValidator.disableButton();
 };
 
 // Initial card rendering
@@ -156,8 +145,5 @@ popups.forEach((popup) => {
   popup.addEventListener("click", popupOverlayClick);
 });
 
-const formElements = document.querySelectorAll(".popup__form");
-formElements.forEach((formElement) => {
-  const formValidator = new FormValidator(VALIDATION_CONFIG, formElement);
-  formValidator.enableValidation();
-});
+formAddValidator.enableValidation();
+formEditValidator.enableValidation();
