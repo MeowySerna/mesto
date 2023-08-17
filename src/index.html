@@ -4,18 +4,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
     <title>Место</title>
   </head>
   <body>
     <div class="root">
       <header class="header">
-        <img src="images/logo.svg" alt="логотип mesto" class="header__logo" />
+        <img
+          src="<%= require('./images/logo.svg') %>"
+          alt="логотип mesto"
+          class="header__logo"
+        />
       </header>
       <main class="main">
         <section class="profile">
           <img
-            src="images/avatar.png"
+            src="<%=require('./images/avatar.png')%>"
             alt="Аватар профиля"
             class="profile__avatar"
           />
@@ -48,7 +51,7 @@
             aria-label="Закрыть"
             class="popup__close-button"
           ></button>
-          <form class="popup__form" name="popup__form" novalidate>
+          <form class="popup__form" name="edit-form" novalidate>
             <h2 class="popup__heading">Редактировать профиль</h2>
             <div class="popup__inputs">
               <div class="popup__input-container">
@@ -56,6 +59,7 @@
                   type="text"
                   placeholder="Имя"
                   id="input_name"
+                  name="name"
                   class="popup__input"
                   minlength="2"
                   maxlength="40"
@@ -70,6 +74,7 @@
                 <input
                   type="text"
                   placeholder="О себе"
+                  name="description"
                   id="input_description"
                   class="popup__input"
                   minlength="2"
@@ -95,7 +100,7 @@
             aria-label="Закрыть"
             class="popup__close-button"
           ></button>
-          <form class="popup__form" name="popup__form" novalidate>
+          <form class="popup__form" name="add-form" novalidate>
             <h2 class="popup__heading">Новое место</h2>
             <div class="popup__inputs">
               <div class="popup__input-container">
@@ -104,6 +109,7 @@
                   id="input_image-name"
                   minlength="2"
                   maxlength="30"
+                  name="image-name"
                   class="popup__input"
                   placeholder="Название"
                   required
@@ -116,6 +122,7 @@
               <div class="popup__input-container">
                 <input
                   id="input_image-link"
+                  name="link"
                   class="popup__input"
                   placeholder="Ссылка на картинку"
                   type="url"
@@ -160,6 +167,5 @@
         </ul>
       </template>
     </div>
-    <script src="scripts/index.js" type="module"></script>
   </body>
 </html>
