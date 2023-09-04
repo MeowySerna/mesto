@@ -11,6 +11,7 @@
   position: absolute;
   background-repeat: no-repeat;
   background-image: url(../../../images/Trash.svg);
+  display: none;
   transition: opacity 0.4s linear;
 }
 .card__trash-button:hover {

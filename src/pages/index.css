@@ -49,4 +49,9 @@
 @import url(../blocks/popup/__error-message/popup__error-message.css);
 @import url(../blocks/popup/__submit-button/_disabled/popup__submit-button_disabled.css);
 @import url(../blocks/popup/__error-message/_hidden/popup__error-message_hidden.css);
+@import url(../blocks/popup/__confirm-container/popup__confirm-container.css);
+@import url(../blocks/profile/__avatar-edit/profile__avatar-edit.css);
+@import url(../blocks/profile/__avatar-container/profile__avatar-container.css);
+@import url(../blocks/popup/__avatar-container/popup__avatar-container.css);
+@import url(../blocks/card/__like-counter/card__like-counter.css);
 
