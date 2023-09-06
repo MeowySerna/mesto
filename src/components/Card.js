@@ -2,11 +2,11 @@ export default class Card {
   constructor(
     data,
     templateSelector,
-    handleCardClick,
-    handleCardDelete,
+    {handleCardClick,
+    handleCardDelete},
     userId,
-    addLike,
-    deleteLike
+    {addLike,
+    deleteLike}
   ) {
     this._name = data.name;
     this._link = data.link;
@@ -39,14 +39,18 @@ export default class Card {
     } else {
       this.addLike();
     }
+
   }
   addLike() {
-    this._cardLikeButton.classList.add("card__like_active");
-    this._addLike(this._id, this._likes, this._likeCounter);
+    this._addLike(this._id, this._likes, this._likeCounter,this._cardLikeButton);
   }
   deleteLike() {
-    this._cardLikeButton.classList.remove("card__like_active");
-    this._deleteLike(this._id, this._likes, this._likeCounter);
+    this._deleteLike(this._id, this._likes, this._likeCounter,this._cardLikeButton);
+  }
+
+  removeCard() {
+    this._element.remove();
+    this._element = null;
   }
 
   _getTemplate() {
@@ -67,9 +71,10 @@ export default class Card {
     this._cardImage.src = this._link;
     this._cardImage.alt = this._name;
     this._element.querySelector(".card__title").textContent = this._name;
-    if (this._likes.some(element => element._id === this._userId)) {
+    if (this._likes.some((element) => element._id === this._userId)) {
       this._cardLikeButton.classList.add("card__like_active");
     }
+
     if (this._userId === this._ownerId) {
       this._trashButton.setAttribute("style", "display: flex;");
     }

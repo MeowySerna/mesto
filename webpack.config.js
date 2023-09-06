@@ -15,6 +15,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, "dist"),
     },
+    open: true,
   },
   mode: "development",
   module: {
