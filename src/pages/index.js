@@ -81,25 +81,21 @@ const createCard = (cardData) => {
     },
     userId,
     {
-      addLike: (id, likes, likesCounter, likeButton) => {
+      addLike: (id) => {
         api
           .addLike(id)
           .then((data) => {
-            likes = data.likes;
-            likesCounter.textContent = likes.length;
-            likeButton.classList.add("card__like_active");
+            card.toggleLike(data.likes);
           })
           .catch((err) => {
             console.log(err);
           });
       },
-      deleteLike: (id, likes, likesCounter, likeButton) => {
+      deleteLike: (id) => {
         api
           .deleteLike(id)
           .then((data) => {
-            likes = data.likes;
-            likesCounter.textContent = likes.length;
-            likeButton.classList.remove("card__like_active");
+            card.removeLike(data.likes);
           })
           .catch((err) => {
             console.log(err);
