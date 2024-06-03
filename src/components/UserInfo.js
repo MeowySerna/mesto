@@ -19,3 +19,4 @@ export default class UserInfo {
     this._avatarElement.src = data.avatar;
   }
 }
+

@@ -48,6 +48,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
   .then(([profileData, cardsData]) => {
     userId = profileData._id;
     cardsContainer.renderElements(cardsData);
+    console.log(cardsData);
     userInfo.setUserInfo(profileData);
     userInfo.setUserAvatar(profileData);
   })

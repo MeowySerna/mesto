@@ -88,6 +88,7 @@ export default class Card {
       this._trashButton.setAttribute("style", "display: flex;");
     }
     this._setEventListeners();
+   
     return this._element;
   }
 }
